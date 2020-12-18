@@ -27,32 +27,38 @@ class UserwithdrowController extends Controller
                       ->where('active_id','=',1)
                       ->count();
 
-    if ($user_count >= 2) {
+        if(auth()->user()->active_id != 1){
+            Alert::toast('Your Account is not active ! please active your account', 'error');
+                return redirect()->back();
+            }elseif(auth()->user()->active_id==3){
+                Alert::toast('Your Account is now hold please contact admin', 'warning');
+                return redirect()->back();
+            }else{
+                if ($user_count >= 3) {
+                    if (auth()->user()->balance >= $request->amount) {
 
 
-        if (auth()->user()->balance >= $request->amount) {
+                    $users = auth()->user()->balance;
+                    $bal = auth()->user()->balance - $request->amount;
+                    User::find($user)->update(['balance' => $bal]);
 
 
-        $users = auth()->user()->balance;
-        $bal = auth()->user()->balance - $request->amount;
-        User::find($user)->update(['balance' => $bal]);
-
-
-          $with = Withdrow::create([
-            'status'=> 0,
-            'user_id'=> $user,
-            'amount'=> $request->amount,
-            'phone_num'=> $request->number,
-            'payment_method'=> $request->payment_method,
-        ]);
-        Alert::toast('Your Payment request is Successfully', 'success');
-        return redirect()->back();
-          }else{
-            Alert::toast('Your Balance is too low', 'error');
-              return redirect()->back();
-          }
+                    $with = Withdrow::create([
+                        'status'=> 2,
+                        'user_id'=> $user,
+                        'amount'=> $request->amount,
+                        'phone_num'=> $request->number,
+                        'payment_method'=> $request->payment_method,
+                    ]);
+                    Alert::toast('Your Payment request is Successfully', 'success');
+                    return redirect()->back();
+                    }else{
+                        Alert::toast('Your Balance is too low', 'error');
+                        return redirect()->back();
+                    }
+                    }
+                    Alert::toast('You Have Must need to minimum 3 active refarel', 'warning');
+                    return redirect()->back();
+            }
         }
-        Alert::toast('You Have Must need to minimum 2 active refarel', 'warning');
-        return redirect()->back();
-    }
 }

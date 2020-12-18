@@ -110,6 +110,7 @@
                 <thead class="thead-light">
                   <tr>
                     <th scope="col">Phone Number</th>
+                    <th scope="col">Paymet Method</th>
                     <th scope="col">Amount</th>
                     <th scope="col">Status</th>
                     <th scope="col">Date</th>
@@ -123,8 +124,12 @@
                       {{$history->phone_num}}
                     </th>
                     <td>
+                        {{$history->payment_method}}
+                    </td>
+                    <td>
                         {{$history->amount}}
                     </td>
+
                     <td>
                         @if ($history->status == 1)
                         <span class='badge badge-success'>Success</span>

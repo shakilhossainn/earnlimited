@@ -183,7 +183,12 @@
             <div class="card-body">
               <!-- Chart -->
               <div class="chart ">
-                @if (auth()->user()->active_id == 1)<h1 style="text-align: center; margin-bottom:50px; font-size:60px">{{auth()->user()->refer_code}}</h1>@else <h2> Please Active Your Account For Get Your Refer Code!! <a href="" style="color: red">Click Here</a> </h2> @endif
+                @if (auth()->user()->active_id == 1)
+                <h1 style="text-align: center; margin-bottom:50px; font-size:60px">{{auth()->user()->refer_code}}</h1>@elseif(auth()->user()->active_id == 3)  <h2> Your Account is on hold Please contect Admin!! <a href="" style="color: red">Click Here</a>
+                    @else
+                    <h2> Please Active Your Account For Get Your Refer Code!! <a href="{{route('tranjection')}}" style="color: red">Click Here</a>
+                @endif
+
 
 
 

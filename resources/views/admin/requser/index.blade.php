@@ -1,7 +1,7 @@
 
 @extends('admin.layouts.master')
 
-@section('user')
+@section('requser')
 active
 @endsection
 @section('content')
@@ -53,14 +53,9 @@ active
                             <thead>
                                 <tr>
                                     <th style="width: 10px">#</th>
-                                    <th>Image</th>
-                                    <th>Name</th>
+
                                     <th>Email</th>
-                                    <th>Phone Number</th>
-                                    <th>Tranjection id</th>
-                                    <th>Blance</th>
                                     {{-- @if (auth()->user()->user_roll == '1' ) --}}
-                                    <th  style="width: 150px">Action</th>
                                     {{-- @endif --}}
                                 </tr>
                             </thead>
@@ -74,20 +69,7 @@ active
                                         style="background-color: #ff9191;"
                                     @endif>
                                         <td>{{ $i++ }}</td>
-                                        <td>
-                                            <div style="max-width: 70px; max-height:70px;overflow:hidden">
-                                                <img src="
-                                                @if($user->image != null)
-                                                {{asset("/storage/image/".$user->image)}}@else
-                                                {{asset('userdashboard')}}/assets/img/theme/team-4.jpg
-                                                @endif" class="img-fluid rounded-circle" alt="profile picture">
-                                            </div>
-                                        </td>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->email }}</td>
-                                        <td>{{ $user->phone_num }}</td>
-                                        <td>{{ $user->tranjecton_id }}</td>
-                                        <td>{{ $user->balance }}</td>
+                                        <td>{{ $user->user_email }}</td>
 
                                         {{-- @if (auth()->user()->user_roll == '1' ) --}}
                                         <td class="d-flex" style="width: 150px">
@@ -126,3 +108,4 @@ active
         </div>
     </div>
 </div>
+@endsection

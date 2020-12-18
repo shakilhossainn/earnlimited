@@ -102,8 +102,8 @@ active
               <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">New Members</span>
-                <span class="info-box-number">2,000</span>
+                <span class="info-box-text">Total Active User</span>
+                <span class="info-box-number">{{$user}}</span>
               </div>
               <!-- /.info-box-content -->
             </div>

@@ -35,7 +35,7 @@
             </li>
             <li class="nav-item">
               <a class="nav-link @yield('profile')" href="
-              {{-- {{route('profile.index')}} --}}
+              {{route('profile')}}
               ">
                 <i class="ni ni-single-02 text-yellow"></i>
                 <span class="nav-link-text">Profile</span>

@@ -74,34 +74,37 @@ active
                                         <td>{{ $i++ }}</td>
                                         <td>
                                             <div style="max-width: 70px; max-height:70px;overflow:hidden">
-                                                <img src="{{ $user->image }}" class="img-fluid" alt="profile picture">
+                                                <img src="@if($user->image != null)
+                                                {{asset("/storage/image/".$user->image)}}@else
+                                                {{asset('userdashboard')}}/assets/img/theme/team-4.jpg
+                                                @endif" class="img-fluid" alt="profile picture">
                                             </div>
                                         </td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->phone_num }}</td>
-                                        <td>{{ $user->tranjection_id }}</td>
+                                        <td>{{ $user->tranjecton_id }}</td>
                                         <td>{{ $user->balance }}</td>
 
                                         {{-- @if (auth()->user()->user_roll == '1' ) --}}
                                         <td class="d-flex" style="width: 150px">
-                                            @if ($user->active_id==2)
+
                                                 <a href="{{ route('user.show', [$user->id]) }}" class="btn btn-sm btn-primary mr-1" onclick="return confirm('are Your sure to active this account')" > <i class="fas fa-check"></i> </a>
 
-                                                @elseif ($user->active_id==1)
-                                            <form action="{{ route('user.destroy', [$user->id]) }}" class="mr-1" method="POST">
-                                                @method('DELETE')
+
+                                            <form action="{{route('user.delete', [$user->id]) }}" class="mr-1" method="POST">
+                                                @method('delete')
                                                 @csrf
-                                                <button type="submit" class="btn btn-sm btn-danger"> <i class="fas fa-trash"></i> </button>
+                                                <button type="submit" onclick="return confirm('are you sure to delete user')" class="btn btn-sm btn-danger"> <i class="fas fa-trash"></i> </button>
                                             </form>
-                                            @endif
+
                                         </td>
                                         {{-- @endif --}}
                                     </tr>
                                 @endforeach
                                 @else
                                     <tr>
-                                        <td colspan="5">
+                                        <td colspan="9">
                                             <h5 class="text-center">No categories found.</h5>
                                         </td>
                                     </tr>

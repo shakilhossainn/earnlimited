@@ -9,6 +9,22 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    public function another()
+    {
+        $users = User::orderBy('id', 'desc')
+                       ->where('active_id','=',2)
+                       ->get();
+        return view('admin.user.inactive', compact('users'));
+    }
+    // public function inactive()
+    // {
+
+    //     $users = User::orderBy('id', 'desc')
+    //                    ->where('active_id','=',2)
+    //                    ->get();
+    //     return 'shakil ahmed ';
+    // }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,14 +34,8 @@ class UserController extends Controller
     {
 
         $users = User::orderBy('id', 'desc')
-                       ->where('active_id','=',1)
+                       ->where('active_id','!=',2)
                        ->get();
-        return view('admin.user.index', compact('users'));
-    }
-    public function inactive()
-    {
-
-        $users = User::orderBy('updated_at', 'desc')->where('active_id','=',2)->get();
         return view('admin.user.index', compact('users'));
     }
 
@@ -58,8 +68,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        // User::find($id)->update(['active_id' => 1]);
-        // return redirect()->back()->with('massage','User id Activeted Now');
+        User::find($id)->update(['active_id' => 1]);
+        return redirect()->back()->with('massage','User id Activeted Now');
 
     }
 
@@ -92,9 +102,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function delete($user)
+    {
+       return 'shakil';
+    }
+
+
     public function destroy($id)
     {
-        User::find($id)->update(['active_id' => 2]);
+        User::find($id)->update(['active_id' => 3]);
         return redirect()->back()->with('massage','User id Dactiveted Now');
     }
 }

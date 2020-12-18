@@ -33,7 +33,10 @@
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="{{asset('userdashboard')}}/assets/img/theme/team-4.jpg">
+                  <img alt="Image placeholder" src=" @if(auth()->user()->image != null)
+                  {{"/storage/image/".auth()->user()->image}}@else
+                  {{asset('userdashboard')}}/assets/img/theme/team-4.jpg
+                  @endif">
                 </span>
                 <div class="media-body  ml-2  d-none d-lg-block">
                 <span class="mb-0 text-sm  font-weight-bold">{{Auth::user()->name}}</span>
@@ -44,11 +47,11 @@
               <div class="dropdown-header noti-title">
                 <h6 class="text-overflow m-0">Welcome!</h6>
               </div>
-              <a href="#!" class="dropdown-item">
+            <a href="{{route('profile')}}" class="dropdown-item">
                 <i class="ni ni-single-02"></i>
                 <span>My profile</span>
               </a>
-              <a href="#!" class="dropdown-item">
+            <a href="{{route('profile')}}" class="dropdown-item">
                 <i class="ni ni-settings-gear-65"></i>
                 <span>Settings</span>
               </a>
@@ -77,6 +80,10 @@
   <!-- Header -->
   @if (auth()->user()->active_id == 2)
   <div class="alert alert-danger ">
-     <p> <strong>Alert : </strong>  Please active your Account For Earn Daily <a href="#">Click Here !! </a></p>
+  <p> <strong>Alert : </strong>  Please active your Account For Earn Daily <a href="{{route('tranjection')}}">Click Here !! </a></p>
+  </div>
+  @elseif (auth()->user()->active_id == 3)
+  <div class="alert alert-danger ">
+     <p> <strong>Alert : </strong> Your Account is on hold Please contect Admin!!  <a href="#">Click Here !! </a></p>
   </div>
   @endif

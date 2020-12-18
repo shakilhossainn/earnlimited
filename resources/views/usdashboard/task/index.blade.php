@@ -96,9 +96,18 @@
                  </form>
                  @else
                  <div class="row justify-content-center">
-                     <p style="color: rgb(18, 75, 197)">You Have no task Aviable able right now !! Please wait for task  </p>
-                 </div>
+                    <p style="color: rgb(18, 75, 197)">You Have no task Aviable able right now !! Please wait for task  </p>
+                </div>
                  @endif
+
+                 @elseif(auth()->user()->active_id == 2)
+                 <div class="row justify-content-center">
+                    <p style="color: rgb(247, 34, 34)">Please active your account </p>
+                </div>
+                @elseif(auth()->user()->active_id == 3)
+                <div class="row justify-content-center">
+                    <p style="color: rgb(247, 34, 34)">Your Account is on hold please contact admin</p>
+                </div>
                  @endif
               </div>
             </div>
