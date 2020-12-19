@@ -33,7 +33,7 @@ class ProfileController extends Controller
          $user->update([
             'image'=> $filename,
          ]);}
-         
+
          $user->update([
             'name'=> $request->name,
             'phone_num'=> $request->phone_num,
@@ -46,12 +46,20 @@ class ProfileController extends Controller
     }
     public function storepass(Request  $request){
             $request->validate([
-                'current_password'=>['required',new MatchOldPass],
-                'new_password'=>['required'],
-                'confirm_password'=>['same:new_password'],
+                'current_password'=>'required',
+                'password'=>'required|string|min:6|confirmed',
+                'password_confirmation'=>'required',
             ]);
 
-            User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
-            dd('password changed');
+            $user= auth()->user();
+                if (!Hash::check($request->current_password, $user->password)) {
+                    Alert::toast('Your Corrent Password is not match', 'error');
+                    return back();
+                }else{
+                    User::find($user->id)->update(['password'=> Hash::make($request->new_password)]);
+                    Alert::toast('Your Password is Changed', 'success');
+                    return back();
+                }
+
     }
 }

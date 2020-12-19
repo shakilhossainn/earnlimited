@@ -100,21 +100,21 @@
                       {{  $message  }}
                     </div>
                 @enderror
-                <label for="New_password">New Password</label>
-                <input type="password" id="New_password" name="new_password" class="form-control"  @error('new_password')
+                <label for="password">New Password</label>
+                <input type="password" id="password" name="password" class="form-control"  @error('password')
                 style="border: 1px solid #f00;margin-bottom:5px;"
                 @enderror>
-                @error('new_password')
+                @error('password')
                 <div style="color:red;">
                   {{  $message  }}
                 </div>
                  @enderror
-                <label for="Confirm_Password">Confirm Password</label>
-                <input type="password" id="Confirm_Password" name="confirm_password" class="form-control"  @error('confirm_password')
+                <label for="password_confirmation">Confirm Password</label>
+                <input type="password" id="password_confirmation" name="password_confirmation" class="form-control"  @error('password_confirmation')
                 style="border: 1px solid #f00;margin-bottom:5px;"
                 @enderror>
               </div>
-              @error('confirm_Password')
+              @error('password_confirmation')
               <div style="color:red;">
                 {{  $message  }}
               </div>
