@@ -54,19 +54,20 @@
                   @if ($task->video_one == null)
                   @else
                   <div class="embed-responsive embed-responsive-21by9" style="margin-bottom:70px;">
-                    <iframe  src="{{$task->video_one}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe id="player" src="https://www.youtube.com/embed/DjB1OvEYMhY?enablejsapi=1" frameborder="0"></iframe>
                   </div>
+                  {{-- <a href="#" id="next-button" class="btn btn-primary">Next</a> --}}
                   @endif
                   @if ($task->video_two == null)
                   @else
-                  <div class="embed-responsive embed-responsive-21by9" style="margin-bottom:70px;">
-                    <iframe  src="{{$task->video_two}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  <div id="next-button" class="embed-responsive embed-responsive-21by9" style="margin-bottom:70px;">
+                    <iframe  id="player" src="https://www.youtube.com/embed/DjB1OvEYMhY?enablejsapi=1" frameborder="0"></iframe>
                   </div>
                   @endif
                   @if ($task->video_three == null)
                   @else
-                  <div class="embed-responsive embed-responsive-21by9" style="margin-bottom:70px;">
-                    <iframe  src="{{$task->video_three}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  <div id="next-button" class="embed-responsive embed-responsive-21by9" style="margin-bottom:70px;">
+                    <iframe id="player"  src="{{$task->video_three}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                   </div>
                   @endif
                   @if ($task->video_four == null)
@@ -92,7 +93,7 @@
                 @csrf
 
                     <textarea name="description"  class="form-control" placeholder="Submit Your Answer"></textarea>
-                    <button type="submit" class="btn btn-primary remove-user" style="margin-top: 5px">Submit</button>
+                    <button type="submit" class="btn btn-primary remove-user mt-3" >Submit</button>
                  </form>
                  @else
                  <div class="row justify-content-center">
@@ -120,6 +121,52 @@
   </div>
 
 
+<script>
+const next_button = document.getElementById("next-button");
+setNextButton("hidden");
 
+let player;
+
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player("player", {
+    events: {
+      onStateChange: onPlayerStateChange,
+    },
+  });
+}
+
+next_button.addEventListener("click", playNext);
+
+function onPlayerStateChange(event) {
+  const playState = state => {
+    return event.data == YT.PlayerState[state.toUpperCase()];
+  };
+
+  if (playState("ended")) {
+    setNextButton("visible");
+  }
+}
+
+function playNext(event) {
+  event.preventDefault();
+
+  setNextButton("hidden");
+}
+
+function setNextButton(state) {
+  next_button.style.visibility = state;
+}
+
+function mousehandler(event) {
+  const eventbutton = event.which || event.button;
+
+  if (eventbutton == 2 || eventbutton == 3) return false;
+}
+
+document.oncontextmenu = () => false;
+document.onmousedown = mousehandler;
+document.onmouseup = mousehandler;
+</script>
+<script src="https://www.youtube.com/iframe_api"></script>
 
 @endsection

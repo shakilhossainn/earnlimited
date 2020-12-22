@@ -56,7 +56,8 @@ class ProfileController extends Controller
                     Alert::toast('Your Corrent Password is not match', 'error');
                     return back();
                 }else{
-                    User::find($user->id)->update(['password'=> Hash::make($request->new_password)]);
+                    //   dd($request->password);
+                    User::find($user->id)->update(['password'=>Hash::make($request->password)]);
                     Alert::toast('Your Password is Changed', 'success');
                     return back();
                 }

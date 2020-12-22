@@ -166,5 +166,9 @@
 
 
 
-
+    <script>
+    document.oncontextmenu = () => false;
+    document.onmousedown = mousehandler;
+    document.onmouseup = mousehandler;
+    </script>
 @endsection

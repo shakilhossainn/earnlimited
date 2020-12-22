@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Tranjection;
 use App\Http\Controllers\Refer;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -7,13 +8,14 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\NoticeController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TaskdoneContorller;
-use App\Http\Controllers\TranjectionController;
 use App\Http\Controllers\UsertaskController;
 use App\Http\Controllers\WithdrowController;
+use App\Http\Controllers\TranjectionController;
 use App\Http\Controllers\UserwithdrowController;
-use App\Models\Tranjection;
+use App\Http\Controllers\AccountactiveController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +51,11 @@ Route::group(['prefix'=>'admin','middleware' => ['auth']], function () {
     Route::post('/withdrow/{id}', [WithdrowController::class, 'success'])->name('withdrow.success');
     Route::post('/withdrow/reject/{id}', [WithdrowController::class, 'reject'])->name('withdrow.reject');
     Route::get('activeidreq', [TranjectionController::class, 'getdata'])->name('req.user');
+    Route::get('accountactive/{user}', [AccountactiveController::class, 'index'])->name('mail.sent');
+    Route::get('massage', [ContactController::class, 'massage'])->name('contact.massage');
+    Route::delete('massagedlet/{id}', [ContactController::class, 'destroy'])->name('massage.destroy');
+    Route::get('massage/{id}', [ContactController::class, 'view'])->name('massage.view');
+
     // Route::resource('/profile', ProfileController::class );
 });
 
@@ -67,5 +74,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('active-id', [TranjectionController::class, 'create'])->name('tranjection.create');
 
 });
+Route::post('contact', [ContactController::class , 'send'])->name('contact.index');
 
 

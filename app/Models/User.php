@@ -40,6 +40,10 @@ class User extends Authenticatable
     {
        return $this->hasMany(Task::class);
     }
+    public function contact()
+    {
+       return $this->hasMany(Contact::class);
+    }
     public function usertask()
     {
        return $this->hasMany(Usertask::class);

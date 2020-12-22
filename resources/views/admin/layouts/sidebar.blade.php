@@ -83,6 +83,16 @@
                   </p>
                 </a>
             </li>
+            <li class="nav-item">
+            <a href="{{route('contact.massage')}}" class="nav-link @yield('massage')">
+                  <i class="nav-icon fas fa-th"></i>
+                  <p>
+                    Contact Message
+                </p>
+                <span class="right badge badge-warning">1</span>
+                </a>
+
+            </li>
             <li class="nav-item  mt-5">
             <form action="{{route('logout')}}" method="POST"  class="nav-link btn btn-danger">
                     @csrf

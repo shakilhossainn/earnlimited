@@ -44,7 +44,7 @@ class UserwithdrowController extends Controller
 
 
                     $with = Withdrow::create([
-                        'status'=> 2,
+                        'status'=> 0,
                         'user_id'=> $user,
                         'amount'=> $request->amount,
                         'phone_num'=> $request->number,

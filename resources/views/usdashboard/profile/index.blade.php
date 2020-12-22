@@ -102,7 +102,7 @@
                 @enderror
                 <label for="password">New Password</label>
                 <input type="password" id="password" name="password" class="form-control"  @error('password')
-                style="border: 1px solid #f00;margin-bottom:5px;"
+                style="border: 1px solid rgb(252, 1, 1);margin-bottom:5px;"
                 @enderror>
                 @error('password')
                 <div style="color:red;">
@@ -115,7 +115,7 @@
                 @enderror>
               </div>
               @error('password_confirmation')
-              <div style="color:red;">
+              <div style="color:red;padding-left: 20px;">
                 {{  $message  }}
               </div>
           @enderror

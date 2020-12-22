@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use App\Models\User;
+use App\Models\Withdrow;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,9 +30,13 @@ class AdminController extends Controller
     // login into dashboard
     public function index()
     {
-        $user =  User::where('active_id','=',1)
-        ->count();
-        return view('admin.index',compact('user'));
+        $users =  User::count();
+        $user =  User::where('active_id','=',1)->count();
+        $withdrow = Withdrow::where('status', '=', 1)->get();
+
+
+        return view('admin.index',compact(['user','withdrow','users']));
     }
+
 
 }

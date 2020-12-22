@@ -31,7 +31,12 @@
 
                         <div class="navbar-btn d-none d-sm-inline-block">
                             <ul>
+                                @auth
+                                <li><a class="solid" href="{{route('home')}}">Dashboard</a></li>
+                                @endauth
+                                @guest
                                 <li><a class="solid" href="{{route('login')}}">Log In</a></li>
+                                @endguest
                             </ul>
                         </div>
                     </nav> <!-- navbar -->

@@ -73,9 +73,9 @@ active
                                 @foreach ($withdrows as $withdrow)
                                     <tr>
                                         <td>{{ $i++ }}</td>
-                                        <td>
-                                            <div style="max-width: 70px; max-height:70px;overflow:hidden">
-                                                <img src="{{ asset($withdrow->user->image) }}" class="img-fluid" alt="">
+                                        <td >
+                                            <div style="max-width: 70px; max-height:70px;overflow:hidden" class="rounded-circle">
+                                                <img src="{{ asset("/storage/image/".$withdrow->user->image) }}" class="img-fluid" alt="">
                                             </div>
                                         </td>
                                         <td>{{ $withdrow->user->name }}</td>
@@ -97,7 +97,7 @@ active
                                         <td class="d-flex" style="width: 150px">
 
 
-                                            @if ($withdrow->status == 2)
+                                            @if ($withdrow->status == 0)
                                             <form action="{{ route('withdrow.success', [$withdrow->id]) }}" method="Post" >
                                                 @csrf
                                             <button type="submit" class="btn btn-sm btn-primary mr-1"><i class="fas fa-check"></i></button>

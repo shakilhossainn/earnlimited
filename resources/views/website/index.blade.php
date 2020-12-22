@@ -25,8 +25,13 @@
                                 <h1 class="title">Business is Now Digital</h1>
                                 <p class="text">We blend insights and strategy to create digital products for forward-thinking organisations.</p>
                                 <ul class="slider-btn rounded-buttons">
+                                    @guest
                                     <li><a class="main-btn rounded-one" href="{{route('register')}}">Sign up </a></li>
                                     <li><a class="main-btn rounded-two" href="{{route('login')}}">Log in  </a></li>
+                                    @endguest
+                                    @auth
+                                    <li><a class="main-btn rounded-two" href="{{route('home')}}">Go to Dashbard</a></li>
+                                    @endauth
                                 </ul>
                             </div>
                         </div>
@@ -47,8 +52,13 @@
                                 <h1 class="title">Crafted for Business</h1>
                                 <p class="text">We blend insights and strategy to create digital products for forward-thinking organisations.</p>
                                 <ul class="slider-btn rounded-buttons">
+                                    @guest
                                     <li><a class="main-btn rounded-one" href="{{route('register')}}">Sign up </a></li>
                                     <li><a class="main-btn rounded-two" href="{{route('login')}}">Log in  </a></li>
+                                    @endguest
+                                    @auth
+                                    <li><a class="main-btn rounded-two" href="{{route('home')}}">Go to Dashbard</a></li>
+                                    @endauth
                                 </ul>
                             </div> <!-- slider-content -->
                         </div>
@@ -69,8 +79,13 @@
                                 <h1 class="title">Based on Bootstrap 4</h1>
                                 <p class="text">We blend insights and strategy to create digital products for forward-thinking organisations.</p>
                                 <ul class="slider-btn rounded-buttons">
+                                    @guest
                                     <li><a class="main-btn rounded-one" href="{{route('register')}}">Sign up </a></li>
                                     <li><a class="main-btn rounded-two" href="{{route('login')}}">Log in  </a></li>
+                                    @endguest
+                                    @auth
+                                    <li><a class="main-btn rounded-two" href="{{route('home')}}">Go to Dashbard</a></li>
+                                    @endauth
                                 </ul>
                             </div> <!-- slider-content -->
                         </div>
@@ -561,14 +576,59 @@
             <div class="col-lg-12">
                 <div class="contact-wrapper form-style-two pt-115">
                     <h4 class="contact-title pb-10"><i class="lni lni-envelope"></i> Leave <span>A Message.</span></h4>
+                    <x-alert />
+                    <form action="{{route('contact.index')}}" method="POST">
 
-                    <form id="contact-form" action="" method="">
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-6 mt-2 ">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" class="form-control" name="name" @error('name')
+                                style="border: 1px solid red"
+                               @enderror >
+                               @error('name')
+                               <div style="color:red">
+                                   {{$message}}
+                               </div>
+                               @enderror
+                            </div>
+                            <div class="col-md-6 mt-2 ">
+                                <label for="email">Your Email</label>
+                                <input type="email" id="email" class="form-control" name="email"
+                                @error('email')
+                                 style="border: 1px solid red"
+                                @enderror>
+                                @error('email')
+                                <div style="color:red">
+                                    {{$message}}
+                                </div>
+                                @enderror
+                            </div>
+                            <div class="col-md-12 mt-2 input-items default">
+                                <label for="message">Your Massage</label>
+                                <textarea type="message" id="message" class="form-control" name="message" @error('message')
+                                 style="border: 1px solid red"
+                                @enderror ></textarea>
+                                @error('message')
+                                <div style="color:red">
+                                    {{$message}}
+                                </div>
+                                @enderror
+                            </div>
+                            <div class="col-md-12 mt-2  ">
+                                <button class="btn badge-primary light-rounded-two mt-2" type="submit"  >Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                    {{-- <form id="contact-form" action="{{route('contact.index')}}" method="POST">
+
+                        @csrf
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-input mt-25">
                                     <label>Name</label>
                                     <div class="input-items default">
-                                        <input name="name" type="text" placeholder="Name">
+                                        <input name="name" type="text" placeholder="Name" required>
                                         <i class="lni lni-user"></i>
                                     </div>
                                 </div> <!-- form input -->
@@ -577,7 +637,7 @@
                                 <div class="form-input mt-25">
                                     <label>Email</label>
                                     <div class="input-items default">
-                                        <input type="email" name="email" placeholder="Email">
+                                        <input type="email" name="email" placeholder="Email" required>
                                         <i class="lni lni-envelope"></i>
                                     </div>
                                 </div> <!-- form input -->
@@ -586,7 +646,7 @@
                                 <div class="form-input mt-25">
                                     <label>Massage</label>
                                     <div class="input-items default">
-                                        <textarea name="massage" placeholder="Massage"></textarea>
+                                        <textarea name="massage" placeholder="Massage" required></textarea>
                                         <i class="lni lni-pencil-alt"></i>
                                     </div>
                                 </div> <!-- form input -->
@@ -594,11 +654,11 @@
                             <p class="form-message"></p>
                             <div class="col-md-12">
                                 <div class="form-input light-rounded-buttons mt-30">
-                                    <button class="main-btn light-rounded-two">Send Message</button>
+                                    <button class="main-btn light-rounded-two" type="submit">Send Message</button>
                                 </div> <!-- form input -->
                             </div>
                         </div> <!-- row -->
-                    </form>
+                    </form> --}}
                 </div> <!-- contact wrapper form -->
             </div>
         </div> <!-- row -->

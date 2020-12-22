@@ -56,10 +56,10 @@ active
               <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">CPU Traffic</span>
+                <span class="info-box-text">Total Active User</span>
                 <span class="info-box-number">
-                  10
-                  <small>%</small>
+                    {{$user}}
+                  {{-- <small>%</small> --}}
                 </span>
               </div>
               <!-- /.info-box-content -->
@@ -72,8 +72,8 @@ active
               <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Likes</span>
-                <span class="info-box-number">41,410</span>
+                <span class="info-box-text">Active User Donetion</span>
+                <span class="info-box-number">{{$user * 620}}</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -89,8 +89,8 @@ active
               <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Sales</span>
-                <span class="info-box-number">760</span>
+                <span class="info-box-text">Total Withdrow</span>
+                <span class="info-box-number">{{$withdrow->count()}}</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -102,8 +102,8 @@ active
               <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Total Active User</span>
-                <span class="info-box-number">{{$user}}</span>
+                <span class="info-box-text">Total User</span>
+                <span class="info-box-number">{{$users}}</span>
               </div>
               <!-- /.info-box-content -->
             </div>

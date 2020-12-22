@@ -55,6 +55,7 @@ active
                                     <th style="width: 10px">#</th>
 
                                     <th>Email</th>
+                                    <th>Action</th>
                                     {{-- @if (auth()->user()->user_roll == '1' ) --}}
                                     {{-- @endif --}}
                                 </tr>
@@ -73,7 +74,8 @@ active
 
                                         {{-- @if (auth()->user()->user_roll == '1' ) --}}
                                         <td class="d-flex" style="width: 150px">
-                                            @if ($user->active_id == 3)
+                                            <a href="{{ route('mail.sent',[$user->id]) }}" class="btn btn-sm btn-primary mr-1" onclick="return confirm('are Your sure to active this account')" > <i class="fas fa-check"></i> </a>
+                                            {{-- @if ($user->active_id == 3)
                                                 <a href="{{ route('user.show', [$user->id]) }}" class="btn btn-sm btn-primary mr-1" onclick="return confirm('are Your sure to active this account')" > <i class="fas fa-check"></i> </a>
 
                                                 @elseif ($user->active_id == 1)
@@ -82,7 +84,7 @@ active
                                                 @csrf
                                                 <button type="submit" class="btn btn-sm btn-danger"> <i class="fas fa-trash"></i> </button>
                                             </form>
-                                            @endif
+                                            @endif --}}
                                         </td>
                                         {{-- @endif --}}
                                     </tr>
